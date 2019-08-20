@@ -88,7 +88,7 @@
         <div class="field testimonial-message required">
             <label class="label" for="message"><span><?= __('Message') ?></span></label>
             <div class="control">
-                <textarea name="message" id="message" title="<?= __('Message') ?>" class="input-text" cols="5" rows="5" data-validate="{required:true}"><?= $block->escapeHtml($formHelper->getMessage()) ?></textarea>
+                <textarea name="message" id="message" title="<?= __('Message') ?>" class="input-text" cols="5" rows="5" data-validate="{required:true, 'validate-no-html-tags':true}"><?= $block->escapeHtml($formHelper->getMessage()) ?></textarea>
             </div>
         </div>
         <?= $block->getChildHtml('captcha'); ?>

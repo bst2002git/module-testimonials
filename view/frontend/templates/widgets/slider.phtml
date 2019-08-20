@@ -15,7 +15,9 @@
             <div>
                 <figure class="testimonial">
                     <blockquote>
+												<div class="testimonial-message" id="testimonial-<?= $testimonial->getTestimonialId(); ?>" data-mage-init='{"testimonial-message-slick":{"contentMaxHeight":200}}'>
                         <?= $block->escapeHtml($testimonial->getMessage()); ?>
+												</div>
                         <div class="arrow"></div>
                     </blockquote>
                     <img src="<?= $block->getProfileImageUrl($testimonial) ?>" alt="Profile image" />

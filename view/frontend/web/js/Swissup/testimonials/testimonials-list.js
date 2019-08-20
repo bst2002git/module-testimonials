@@ -13,6 +13,7 @@ define(["jquery"], function($) {
             $.post(config.loadAction, { page: currentPage },
                 function(data) {
                     $(element).append(data.outputHtml);
+					$(element).trigger('contentUpdated');
                     viewMore.removeClass('disabled');
                     if (data.lastPage) viewMore.hide();
                 },

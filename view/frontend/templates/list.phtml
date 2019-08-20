@@ -9,7 +9,9 @@
         <?php foreach ($testimonials as $testimonial): ?>
             <figure class="testimonial<?php if ($block->getIsAjax()): ?> loaded<?php endif;?>">
                 <blockquote>
-                    <?= $block->escapeHtml($testimonial->getMessage()); ?>
+										<div class="testimonial-message" id="testimonial-<?= $testimonial->getTestimonialId(); ?>" data-mage-init='{"testimonial-message":{"contentMaxHeight":200}}'>
+                    <?=  /* @noEscape */ $block->getCmsFilterContent($testimonial->getMessage()); ?>
+										</div>
                     <div class="arrow"></div>
                     <div class="extra-info">
                         <small class="date nobr"><?= $block->formatDate($testimonial->getDate(), \IntlDateFormatter::LONG) ?></small>

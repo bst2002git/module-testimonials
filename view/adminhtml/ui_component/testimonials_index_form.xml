@@ -123,12 +123,25 @@
         <field name="message">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="dataType" xsi:type="string">string</item>
-                    <item name="label" xsi:type="string" translate="true">Message</item>
-                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">wysiwyg</item>
+										<item name="template" xsi:type="string">ui/form/field</item>
+										<item name="wysiwyg" xsi:type="boolean">true</item>
+										<item name="wysiwygConfigData" xsi:type="array">
+										    <item name="files_browser_window_url" xsi:type="boolean">false</item>
+										    <!-- <item name="height" xsi:type="string">100px</item> -->
+										    <item name="toggle_button" xsi:type="boolean">true</item>
+										    <item name="add_variables" xsi:type="boolean">false</item>
+										    <item name="add_widgets" xsi:type="boolean">true</item>
+										    <item name="add_images" xsi:type="boolean">false</item>
+										</item>
+										<!-- <item name="additionalClasses" xsi:type="string">admin__field-wide</item> -->
+										<!-- <item name="additionalClasses" xsi:type="string">admin__control-wysiwig</item> -->
+										<item name="rows" xsi:type="number">8</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
+                    <item name="label" xsi:type="string" translate="true">Message</item>
                 </item>
             </argument>
         </field>
@@ -216,6 +229,12 @@
                     <item name="dataType" xsi:type="string">date</item>
                     <item name="formElement" xsi:type="string">date</item>
                     <item name="label" xsi:type="string" translate="true">Created date</item>
+										<item name="options" xsi:type="array">
+												<item name="dateFormat" xsi:type="string">yyyy-MM-dd</item>
+												<item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+												<item name="showsTime" xsi:type="boolean">true</item>
+										</item>
+
                 </item>
             </argument>
         </field>

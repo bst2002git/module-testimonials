@@ -44,6 +44,11 @@ class TestimonialsList extends \Magento\Framework\View\Element\Template implemen
     private $testimonialsCollectionFactory;
 
     /**
+     * @var \Magento\Cms\Model\Template\FilterProvider
+     */
+    protected $_filterProvider;
+
+    /**
      * Construct
      *
      * @param \Magento\Framework\View\Element\Template\Context $context
@@ -57,12 +62,14 @@ class TestimonialsList extends \Magento\Framework\View\Element\Template implemen
         \Swissup\Testimonials\Model\ResourceModel\Data\CollectionFactory $testimonialsCollectionFactory,
         \Swissup\Testimonials\Helper\Config $configHelper,
         \Swissup\Testimonials\Helper\ListHelper $listHelper,
+				\Magento\Cms\Model\Template\FilterProvider $filterProvider,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->testimonialsCollectionFactory = $testimonialsCollectionFactory;
         $this->configHelper = $configHelper;
         $this->listHelper = $listHelper;
+				$this->_filterProvider = $filterProvider;
     }
 
     public function _construct()
@@ -218,5 +225,16 @@ class TestimonialsList extends \Magento\Framework\View\Element\Template implemen
         ];
 
         return json_encode($jsConfig);
+    }
+
+		/**
+     * Prepare HTML content
+     *
+     * @return string
+     */
+    public function getCmsFilterContent($value='')
+    {
+        $html = $this->_filterProvider->getPageFilter()->filter($value);
+        return $html;
     }
 }
