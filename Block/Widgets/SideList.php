@@ -18,13 +18,21 @@ class SideList extends \Magento\Framework\View\Element\Template
      * @param \Swissup\Testimonials\Model\ResourceModel\Data\CollectionFactory $testimonialsCollectionFactory,
      * @param array $data
      */
+
+		/**
+     * @var \Magento\Cms\Model\Template\FilterProvider
+     */
+    protected $_filterProvider;
+
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
         \Swissup\Testimonials\Model\ResourceModel\Data\CollectionFactory $testimonialsCollectionFactory,
+				\Magento\Cms\Model\Template\FilterProvider $filterProvider,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->_testimonialsCollectionFactory = $testimonialsCollectionFactory;
+				$this->_filterProvider = $filterProvider;
     }
 
     public function _construct()
@@ -68,5 +76,16 @@ class SideList extends \Magento\Framework\View\Element\Template
     {
         $ratingPercent = $testimonial->getRating() / 5 * 100;
         return (String)$ratingPercent;
+    }
+
+		/**
+     * Prepare HTML content
+     *
+     * @return string
+     */
+    public function getCmsFilterContent($value='')
+    {
+        $html = $this->_filterProvider->getPageFilter()->filter($value);
+        return $html;
     }
 }

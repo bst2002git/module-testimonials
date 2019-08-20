@@ -19,6 +19,11 @@ class Slider extends \Magento\Framework\View\Element\Template
      */
     private $listHelper;
 
+		/**
+     * @var \Magento\Cms\Model\Template\FilterProvider
+     */
+    protected $_filterProvider;
+
     /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Swissup\Testimonials\Model\ResourceModel\Data\CollectionFactory $testimonialsCollectionFactory
@@ -29,11 +34,13 @@ class Slider extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \Swissup\Testimonials\Model\ResourceModel\Data\CollectionFactory $testimonialsCollectionFactory,
         \Swissup\Testimonials\Helper\ListHelper $listHelper,
+				\Magento\Cms\Model\Template\FilterProvider $filterProvider,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->testimonialsCollectionFactory = $testimonialsCollectionFactory;
         $this->listHelper = $listHelper;
+				$this->_filterProvider = $filterProvider;
     }
 
     public function _construct()
@@ -78,5 +85,16 @@ class Slider extends \Magento\Framework\View\Element\Template
         $image = $this->listHelper->resize($testimonial);
 
         return $image ? $image : $this->getViewFileUrl('Swissup_Testimonials::images/empty.svg');
+    }
+
+		/**
+     * Prepare HTML content
+     *
+     * @return string
+     */
+    public function getCmsFilterContent($value='')
+    {
+        $html = $this->_filterProvider->getPageFilter()->filter($value);
+        return $html;
     }
 }
